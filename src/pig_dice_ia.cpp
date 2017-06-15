@@ -36,14 +36,14 @@ action_t next_action_ia( const TurnSnapshot & ts_ )
     // Dumb AI, just a random choice
     //return ( dice::roll(2) ?  action_t::ROLL : action_t::HOLD );
     
-    ScoreType diff;
+    int diff;
     ScoreType pts_at = ts_.curr_turn->pts;
     ScoreType rod = ts_.curr_turn->n_rolls;
 
-    if (op_pts < my_pts){
-        diff = my_pts - op_pts;
-    }else diff = 1;
-    
+    diff = my_pts - op_pts;
+    if ( (diff < -10) and (rod < 7)){
+    	return action_t::ROLL;
+    } else  
     if (rod < 3) {
 
         if ((my_pts + pts_at) >= 100 || ((my_pts >= 90) && pts_at >= 4 && diff >= 6 )){
