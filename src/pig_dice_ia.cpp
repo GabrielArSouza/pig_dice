@@ -41,24 +41,24 @@ action_t next_action_ia( const TurnSnapshot & ts_ )
     ScoreType rod = ts_.curr_turn->n_rolls;
 
     diff = my_pts - op_pts;
-    if ( (diff < -10) and (rod < 7)){
+    if ( (diff < -10) and (rod < 5) and ( pts_at < 18)){
     	return action_t::ROLL;
     } else  
-    if (rod < 3) {
+    if (rod < 4) {
 
-        if ((my_pts + pts_at) >= 100 || ((my_pts >= 90) && pts_at >= 4 && diff >= 6 )){
+        if ((my_pts + pts_at) >= 100 || ((my_pts >= 90) && pts_at >= 8 && diff >= 20 )){
             return action_t::HOLD;
-        }else if (diff >= 20 && my_pts >= 80 && pts_at >= 4){
+        }else if (pts_at >= 20){
             return action_t::HOLD;
-        }else if (diff >= 15 && pts_at >= 6){
+        }else if (diff >= 20 && my_pts >= 80 && pts_at >= 8){
             return action_t::HOLD;
-        }else if (pts_at >= 10){
+        }else if (diff >= 15 && pts_at >= 10){
             return action_t::HOLD;
-        }else if (diff >= 10 && pts_at >= 8){
+        }else if (diff >= 10 && pts_at >= 13){
             return action_t::HOLD;
-        }else if (diff >= 5 && rod == 1 && pts_at == 6){
+        }else if (diff >= 28 && rod == 1 && pts_at == 6 && my_pts >= 85){
             return action_t::HOLD;
-        }else if (diff >= 5 && pts_at >= 9){
+        }else if (diff >= 5 && pts_at >= 17){
             return action_t::HOLD;
         }else return action_t::ROLL;
 
